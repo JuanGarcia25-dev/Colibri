@@ -44,12 +44,17 @@ function RideDetails({
           >
             <div>
               <img
+                className={`${
+                  confirmedRideData ? "h-20" : "h-12"
+                } rounded-full scale-x-[-1]`}
                 src={
-                  selectedVehicle == "car"
-                    ? "/car.png"
-                    : `/${selectedVehicle}.webp`
+                  {
+                    car: "/car.png",
+                    bike: "/combi.png",
+                    auto: "/auto.webp", // agregar más según sea necesario
+                  }[selectedVehicle] || "/default.png"
                 }
-                className={`${confirmedRideData ? " h-20" : " h-12 "}`}
+                alt="Vehicle"
               />
             </div>
 
@@ -161,7 +166,11 @@ function RideDetails({
               fun={cancelRide}
             />
           ) : (
-            <Button title={"Confirmar viaje"} fun={createRide} loading={loading} />
+            <Button
+              title={"Confirmar viaje"}
+              fun={createRide}
+              loading={loading}
+            />
           )}
         </div>
       </div>

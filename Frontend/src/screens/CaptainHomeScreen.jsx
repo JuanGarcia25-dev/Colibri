@@ -415,15 +415,18 @@ function CaptainHomeScreen() {
               </p>
             </div>
 
-            <img
-              className="rounded-full h-16 scale-x-[-1]"
-              src={
-                captain?.vehicle?.type == "car"
-                  ? "/car.png"
-                  : `/${captain.vehicle.type}.webp`
-              }
-              alt="Driver picture"
-            />
+          <img
+  className="rounded-full h-16 scale-x-[-1]"
+  src={
+    {
+      car: "/car.png",
+      bike: "/combi.png",
+      
+    }[captain?.vehicle?.type] || "/default.png" 
+  }
+  alt="Driver picture"
+/>
+
           </div>
         </div>
       )}

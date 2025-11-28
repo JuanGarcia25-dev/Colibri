@@ -22,6 +22,11 @@ function CaptainEditProfile() {
 
   const navigation = useNavigate();
 
+  const vehicleOptions = [
+  { label: "Carro", value: "car" },
+  { label: "Combi", value: "bike" },
+];
+
   const updateUserProfile = async (data) => {
     const captainData = {
       fullname: {
@@ -135,14 +140,15 @@ function CaptainEditProfile() {
             defaultValue={captain.vehicle.number}
           />
          <Input
-            label={"Vehicle type"}
-            type={"select"}
-            options={["Car", "Bike", "Auto"]}
-            name={"type"}
-            register={register}
-            error={errors.type}
-            defaultValue={captain.vehicle.type}
-          />
+  label={"Tipo de vehículo"}
+  type={"select"}
+  options={vehicleOptions}
+  name={"type"}
+  register={register}
+  error={errors.type}
+  defaultValue={captain.vehicle.type}
+/>
+
           {responseError && (
             <p className="text-sm text-center mb-4 text-red-500">
               {responseError}

@@ -18,6 +18,13 @@ function CaptainSignup() {
   } = useForm();
 
   const navigation = useNavigate();
+
+  // 🚗 Tipos de vehículos
+  const vehicleTypes = [
+    { label: "Carro", value: "car" },
+    { label: "Combi", value: "bike" },
+  ];
+
   const signupCaptain = async (data) => {
     const captainData = {
       fullname: {
@@ -31,7 +38,7 @@ function CaptainSignup() {
         color: data.color,
         number: data.number,
         capacity: data.capacity,
-        type: data.type,
+        type: data.type, // se enviará 'car', 'bike' o 'auto'
       },
     };
     Console.log(captainData);
@@ -47,7 +54,7 @@ function CaptainSignup() {
       navigation("/captain/home");
     } catch (error) {
       setResponseError(
-        error.response.data[0]?.msg || error.response.data.message
+        error.response?.data?.[0]?.msg || error.response?.data?.message
       );
       setShowVehiclePanel(false);
       Console.log(error);
@@ -57,9 +64,10 @@ function CaptainSignup() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setResponseError("");
-    }, 5000);
+    if (responseError) {
+      const timer = setTimeout(() => setResponseError(""), 5000);
+      return () => clearTimeout(timer);
+    }
   }, [responseError]);
 
   return (
@@ -116,10 +124,8 @@ function CaptainSignup() {
               )}
 
               <div
-                className={`cursor-pointer flex justify-center items-center gap-2 py-3 font-semibold bg-black text-white w-full rounded-lg`}
-                onClick={() => {
-                  setShowVehiclePanel(true);
-                }}
+                className="cursor-pointer flex justify-center items-center gap-2 py-3 font-semibold bg-black text-white w-full rounded-lg"
+                onClick={() => setShowVehiclePanel(true)}
               >
                 Siguiente <ChevronRight strokeWidth={2.5} />
               </div>
@@ -129,9 +135,7 @@ function CaptainSignup() {
           {showVehiclePanel && (
             <>
               <ArrowLeft
-                onClick={() => {
-                  setShowVehiclePanel(false);
-                }}
+                onClick={() => setShowVehiclePanel(false)}
                 className="cursor-pointer -ml-1 mb-4"
               />
 
@@ -161,7 +165,7 @@ function CaptainSignup() {
               <Input
                 label={"Tipo de vehículo"}
                 type={"select"}
-                options={["Car", "Bike", "Auto"]}
+                options={vehicleTypes} // <- Muestra español, envía value correcto
                 name={"type"}
                 register={register}
                 error={errors.type}
@@ -197,8 +201,7 @@ function CaptainSignup() {
         <p className="text-xs font-normal text-center self-end mt-6">
           Este sitio está protegido por reCAPTCHA y aplican las{" "}
           <span className="font-semibold underline">Políticas de Privacidad</span> y{" "}
-          <span className="font-semibold underline">Términos de Servicio</span>{" "}
-          de Google.
+          <span className="font-semibold underline">Términos de Servicio</span> de Google.
         </p>
       </div>
     </div>

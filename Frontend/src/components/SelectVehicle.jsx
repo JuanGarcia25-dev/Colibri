@@ -11,20 +11,12 @@ const vehicles = [
   },
   {
     id: 2,
-    name: "Moto",
-    description: "Viajes en motocicleta asequibles",
+    name: "Combi",
+    description: "Viajes en trasporte colectivo asequibles",
     type: "bike",
-    image: "bike.webp",
+    image: "combi.png",
     price: 254.7,
-  },
-  {
-    id: 3,
-    name: "Auto-rickshaw",
-    description: "Viajes en auto-rickshaw asequibles",
-    type: "auto",
-    image: "auto.webp",
-    price: 200.0,
-  },
+  }
 ];
 
 function SelectVehicle({
