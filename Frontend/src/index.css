@@ -16,9 +16,20 @@
 }
 
 @media (min-width: 700px) {
-  #root {
-    max-width: 280px; /* ancho típico de móvil */
-    margin: 0 auto;
+ body {
+    margin: 0;
+    padding: 0;
+    background-color: #f79999; 
+    background-image: url('../public/clb-logo.png'), url('../public/clb-logo.png');
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center; 
+    background-size: 650px auto, 550px auto; 
   }
+
+
+#root {
+  max-width: 280px; /* ancho del contenedor */
+  margin: 0 auto;
+}
 }
 
