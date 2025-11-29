@@ -32,7 +32,7 @@ function GetStarted() {
       />
       
     <div
-  className="flex flex-col p-4 pb-8 gap-8 rounded-t-lg bg-[#d31c5b] text-white shadow-lg shadow-pink-800/30"
+  className="flex flex-col p-2 pb-6 gap-7 rounded-t-lg bg-[#d31c5b] text-white shadow-lg shadow-pink-800/30"
 >
   <h1 className="text-2xl font-semibold">Bienvenido a Colibri</h1>
  <Button
